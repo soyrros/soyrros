@@ -3,7 +3,10 @@
   <entry>
     <title><![CDATA[hexo markdown写作样式]]></title>
     <url>%2F2018%2F06%2F07%2Fmarkdown%E5%86%99%E4%BD%9C%E6%A0%B7%E5%BC%8F%2F</url>
-    <content type="text"><![CDATA[hexo 代码块 [language] [title] [url] [link-text] test百度123funtion test() &#123; console.log('test');&#125; []百度123funtion test() &#123; console.log(&apos;test&apos;);&#125; 行代码 diff12- theme: landscape+ theme: next 标签 修改主题配置 123456789101112note: # Note tag style values: # - simple bs-callout old alert style. Default. # - modern bs-callout new (v2-v3) alert style. # - flat flat callout style with background, like on Mozilla or StackOverflow. # - disabled disable all CSS styles import of note tag. style: flat icons: true border_radius: 3 # Offset lighter of background in % for modern and flat styles (modern: -12 | 12; flat: -18 | 6). # Offset also applied to label tag variables. This option can work with disabled note tag. light_bg_offset: 0 hello infohello defaultprimarysuccessdangerdanger no-icon]]></content>
+    <content type="text"><![CDATA[hexo好看写作…# 代码块&gt; [language] [title] [url] [link-text]test百度123funtion test() &#123; console.log('test');&#125;[]百度123funtion test() &#123; console.log(&apos;test&apos;);&#125;行代码diff12- theme: landscape+ theme: next# 标签&gt; 修改主题配置123456789101112note: # Note tag style values: # - simple bs-callout old alert style. Default. # - modern bs-callout new (v2-v3) alert style. # - flat flat callout style with background, like on Mozilla or StackOverflow. # - disabled disable all CSS styles import of note tag. style: flat icons: true border_radius: 3 # Offset lighter of background in % for modern and flat styles (modern: -12 | 12; flat: -18 | 6). # Offset also applied to label tag variables. This option can work with disabled note tag. light_bg_offset: 0hello infohello defaultprimarysuccessdangerdanger no-icon]]></content>
+      <categories>
+        <category>hexo</category>
+      </categories>
       <tags>
         <tag>hexo</tag>
       </tags>
@@ -11,14 +14,6 @@
   <entry>
     <title><![CDATA[Hello World]]></title>
     <url>%2F2018%2F05%2F31%2Fhello-world%2F</url>
-    <content type="text"><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. info Quick StartCreate a new post1$ hexo new "My New Post" More info: Writing Run server1$ hexo server More info: Server Generate static files1$ hexo generate More info: Generating Deploy to remote sitesMore info: Deployment]]></content>
-      <categories>
-        <category>我们</category>
-        <category>中国</category>
-      </categories>
-      <tags>
-        <tag>is</tag>
-        <tag>front</tag>
-      </tags>
+    <content type="text"><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick StartCreate a new post1$ hexo new "My New Post" More info: Writing Run server1$ hexo server More info: Server Generate static files1$ hexo generate More info: Generating Deploy to remote sitesMore info: Deployment]]></content>
   </entry>
 </search>

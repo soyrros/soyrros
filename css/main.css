@@ -1857,7 +1857,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #2bcbcc;
+  background: #ffa691;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2763,6 +2763,10 @@ input:-ms-input-placeholder {
 .page-post-detail .sidebar-toggle-line {
   background: #ffc0cb;
 }
+.sidebar-toggle,
+.back-to-top {
+  border-radius: 5px;
+}
 p a,
 .highlight .gutter pre,
 .sidebar a:hover,
@@ -2809,10 +2813,24 @@ p,
 /*-webkit-box-shadow: 0 0 14px rgba(202,203,203,0.5);
     -moz-box-shadow: 0 0 14px rgba(202,203,204,0.5);*/
 }
+.post-category a {
+  color: #999;
+  border-bottom: 1px solid #999;
+}
 .post {
   padding: 25px;
   border-radius: 3px;
   margin-bottom: 20px;
+}
+a.post-title-link:hover {
+  color: #ffc0cb;
+}
+.posts-expand .post-title-link::before {
+  background-color: #ffc0cb;
+/*background-image: linear-gradient(90deg,#fcf 0,#ffd2ff 25%,#ffdeff 50%,#fcf 75%,#fcf 100%);*/
+}
+.posts-expand .post-eof {
+  display: none;
 }
 .post-body .note.info {
   background-color: rgba(246,192,204,0.18);
