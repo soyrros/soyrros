@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[线程池]]></title>
+    <url>%2F2018%2F06%2F13%2F%E7%BA%BF%E7%A8%8B%E6%B1%A0%2F</url>
+    <content type="text"><![CDATA[new Thread弊端： 1.每次new Thread对象，性能差。 2.线程缺乏统一管理，可能无限制新建线程，相互之间竞争，及可能占用过多系统资源导致死机或oom。 3.缺乏更多功能，，如定时执行、定期执行、线程中断。 线程池优点： 1.重用存在线程，减少对象创建、消亡的开销，性能佳。 2.可有效控制最大并发线程数，提高系统资源的使用率，同时避免过多资源竞争，避免堵塞。 3.提供定时执行、定期执行、单线程、并发数控制等功能。 newCachedThreadPool创建一个可缓存线程池，如果线程池长度超过处理需要，可灵活回收空闲线程，若无可回收，则新建线程。 newFixedThreadPool创建一个定长线程池，可控制线程最大并发数，超出的线程会在队列中等待。1234567891011121314151617public static void main(String[] args) &#123; ExecutorService fixedThreadPool = Executors.newFixedThreadPool(3); for (int i = 0; i &lt; 10; i++) &#123; final int index = i; fixedThreadPool.execute(new Runnable() &#123; @Override public void run() &#123; try &#123; System.out.println(index); Thread.sleep(2000); &#125; catch (Exception e) &#123; e.printStackTrace(); &#125; &#125; &#125;); &#125;&#125; 因为线程池大小为3，每个任务输出index后sleep 2秒，所以每两秒打印3个数字。 定长线程池的大小最好根据系统资源进行设置。如Runtime.getRuntime().availableProcessors()。可参考PreloadDataCache。 newScheduledThreadPool创建一个定长线程池，支持定时及周期性任务执行。12345678910111213public static void main(String[] args) &#123; ScheduledExecutorService scheduledThreadPool = Executors.newScheduledThreadPool(5); scheduledThreadPool.schedule(new Runnable() &#123; @Override public void run() &#123; try &#123; System.out.println("hi, scheduledThreadPool."); &#125; catch (Exception e) &#123; e.printStackTrace(); &#125; &#125; &#125;, 3, TimeUnit.SECONDS);&#125; 表示延迟3秒执行。 123456789public static void main(String[] args) &#123; ScheduledExecutorService scheduledThreadPool = Executors.newScheduledThreadPool(5); scheduledThreadPool.scheduleAtFixedRate(new Runnable() &#123; @Override public void run() &#123; System.out.println("hi , scheduleAtFixedRate"); &#125; &#125;, 1, 2, TimeUnit.SECONDS);&#125; 表示延迟1秒后每2秒执行一次。 newSingleThreadExecutor创建一个单线程化的线程池，它只会用唯一的工作线程来执行任务，保证所有任务按照指定顺序(FIFO, LIFO, 优先级)执行。1234567891011121314151617public static void main(String[] args) &#123; ExecutorService singleThreadExecutor = Executors.newSingleThreadExecutor(); for (int i = 0; i &lt; 10; i++) &#123; final int index = i; singleThreadExecutor.execute(new Runnable() &#123; @Override public void run() &#123; try &#123; System.out.println(index); Thread.sleep(3000); &#125; catch (Exception e) &#123; e.printStackTrace(); &#125; &#125; &#125;); &#125;&#125; 顺序执行各个任务。]]></content>
+      <categories>
+        <category>JAVA</category>
+      </categories>
+      <tags>
+        <tag>JAVA</tag>
+        <tag>线程池</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[git提交本地项目到github]]></title>
     <url>%2F2018%2F06%2F13%2Fgit%E6%8F%90%E4%BA%A4%E6%9C%AC%E5%9C%B0%E9%A1%B9%E7%9B%AE%E5%88%B0github%2F</url>
     <content type="text"><![CDATA[如何将本地项目提交github 进入项目目录1$ cd Code/umi-demo git初始化，生成.git隐藏文件夹1$ git init 在github创建与项目同名repositoryCreate New Repository 使本地库关联远程库1$ git remote add origin git@github.com:chiangfai/umi-demo.git 将本地项目文件添加到本地缓存库及提交到本地分支12$ git add . // .代表所有文件$ git commit -m "commit all file" //将所有文件提交到本地库中 提交本地到远程库12$ git push -u origin master //第一次提交 添加命令参数 -u 确保关联本地库和远程库$ git push origin master //非第一次提交使用此命令即可]]></content>
