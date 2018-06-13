@@ -1,6 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[git提交本地项目到github]]></title>
+    <url>%2F2018%2F06%2F13%2Fgit%E6%8F%90%E4%BA%A4%E6%9C%AC%E5%9C%B0%E9%A1%B9%E7%9B%AE%E5%88%B0github%2F</url>
+    <content type="text"><![CDATA[如何将本地项目提交github 进入项目目录1$ cd Code/umi-demo git初始化，生成.git隐藏文件夹1$ git init 在github创建与项目同名repositoryCreate New Repository 使本地库关联远程库1$ git remote add origin git@github.com:chiangfai/umi-demo.git 将本地项目文件添加到本地缓存库及提交到本地分支12$ git add . // .代表所有文件$ git commit -m "commit all file" //将所有文件提交到本地库中 提交本地到远程库12$ git push -u origin master //第一次提交 添加命令参数 -u 确保关联本地库和远程库$ git push origin master //非第一次提交使用此命令即可]]></content>
+      <categories>
+        <category>git</category>
+        <category>github</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
+        <tag>github</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Java面试汇总]]></title>
+    <url>%2F2018%2F06%2F09%2FJava%E9%9D%A2%E8%AF%95%E6%B1%87%E6%80%BB%2F</url>
+    <content type="text"><![CDATA[… JAVA基础]]></content>
+      <categories>
+        <category>JAVA</category>
+      </categories>
+      <tags>
+        <tag>JAVA</tag>
+        <tag>面试</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[hexo博客自定义]]></title>
+    <url>%2F2018%2F06%2F08%2Fhexo%E5%8D%9A%E5%AE%A2%E8%87%AA%E5%AE%9A%E4%B9%89%2F</url>
+    <content type="text"><![CDATA[头像旋转 统计站点运行时长 页脚跳动❤️ 头像旋转next/source/css/_custom/_custom.styl12345678.site-author-image &#123; border-radius: 50%; transition: transform 1.0s ease-out;&#125;.site-author-image:hover &#123; transform: rotate(360deg);&#125; 站点运行时长HTML1&lt;div id="site-currentTime"&gt;&lt;/div&gt; /next/layout/_custom/sidebar.swig1234567891011121314151617181920212223242526272829303132333435363738394041424344454647&lt;script type="text/javascript"&gt; function setSiteCurrentTime() &#123; window.setTimeout("setSiteCurrentTime()", 1000); var second = 1000; // 秒 var minute = second * 60; // 分 var hour = minute * 60; // 时 var day = hour * 24; // 天 var year = day * 365; // 年 var currentDate = new Date(); // 获取当前时间 var currentYear = currentDate.getFullYear(); var currentMonth = currentDate.getMonth() + 1; var currentDay = currentDate.getDate(); var currentHour = currentDate.getHours(); var currentMinute = currentDate.getMinutes(); var currentSecond = currentDate.getSeconds(); // //2018-05-31 var birth = Date.UTC(2018, 05, 31, 12, 00, 00); // 北京时间2016-12-1 00:00:00 var now = Date.UTC(currentYear, currentMonth, currentDay, currentHour, currentMinute, currentSecond); var diff = now - birth; var diffYear = Math.floor(diff/year); var diffDay = Math.floor((diff/day) - diffYear*365); var diffHour = Math.floor((diff - (diffYear*365+diffDay)*day)/hour); var diffMinute = Math.floor((diff-(diffYear*365+diffDay)*day - diffHour*hour)/minute); var diffSecond = Math.floor((diff - (diffYear*365+diffDay)*day - diffHour*hour - diffMinute*minute)/second); document.getElementById('site-currentTime').innerHTML = formartHTML(diffYear, diffDay , diffHour, diffMinute, diffSecond); &#125; function formartHTML(year, day, hour, minute, second) &#123; var time = '已运行', y = year + ' 年 ', d = day + ' 天 ', h = hour + ' 时 ', m = minute + ' 分 ', s = second+ ' 秒 '; if( year &gt; 0 ) &#123; time += y; &#125; time += d + h + m + s; var html = '&lt;i class="fa fa-hourglass-half"/&gt;' html += '&lt;span&gt;' + time + '&lt;/span&gt;'; return html; // return html + '已运行 ' + year + ' 年 ' + day + ' 天 '+ hour + ' 时 ' + minute + ' 分 ' + second+ ' 秒 '; &#125; setSiteCurrentTime();&lt;/script&gt; 页脚跳动❤️next/source/css/_custom/_custom.styl12345678910with-love &#123; animation: heartAnimate 1.33s ease-in-out infinite ;&#125;@keyframes heartAnimate &#123; 0%,100%&#123;transform:scale(1);&#125; 10%,30%&#123;transform:scale(0.9);&#125; 20%,40%,60%,80%&#123;transform:scale(1.1);&#125; 50%,70%&#123;transform:scale(1.1);&#125;&#125;]]></content>
+      <tags>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[站点运行时长统计]]></title>
+    <url>%2F2018%2F06%2F08%2F%E7%AB%99%E7%82%B9%E8%BF%90%E8%A1%8C%E6%97%B6%E9%95%BF%2F</url>
+    <content type="text"><![CDATA[JS统计站点运行时长 HTML12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455&lt;!DOCTYPE html&gt;&lt;html lang="en"&gt;&lt;head&gt; &lt;meta charset="UTF-8"&gt; &lt;title&gt;Document&lt;/title&gt; &lt;style&gt; #site-currentTime &#123; border: 1px solid red; height: 50px; width: 200px; margin: 0 auto; &#125; &lt;/style&gt;&lt;/head&gt;&lt;body&gt; &lt;div id="site-currentTime"&gt;&lt;/div&gt; &lt;script type="text/javascript"&gt; function setSiteCurrentTime() &#123; window.setTimeout("setSiteCurrentTime()", 1000); var second = 1000; // 秒 var minute = second * 60; // 分 var hour = minute * 60; // 时 var day = hour * 24; // 天 var year = day * 365; // 年 var currentDate = new Date(); // 获取当前时间 var currentYear = currentDate.getFullYear(); var currentMonth = currentDate.getMonth() + 1; var currentDay = currentDate.getDate(); var currentHour = currentDate.getHours(); var currentMinute = currentDate.getMinutes(); var currentSecond = currentDate.getSeconds(); var birth = Date.UTC(2018, 06, 07, 12, 00, 00); // 北京时间2016-12-1 00:00:00 var now = Date.UTC(currentYear, currentMonth, currentDay, currentHour, currentMinute, currentSecond); var diff = now - birth; var diffYear = Math.floor(diff/year); var diffDay = Math.floor((diff/day) - diffYear*365); var diffHour = Math.floor((diff - (diffYear*365+diffDay)*day)/hour); var diffMinute = Math.floor((diff-(diffYear*365+diffDay)*day - diffHour*hour)/minute); var diffSecond = Math.floor((diff - (diffYear*365+diffDay)*day - diffHour*hour - diffMinute*minute)/second); document.getElementById('site-currentTime').innerHTML = formartHTML(diffYear, diffDay, diffHour, diffMinute, diffSecond); &#125; function formartHTML(year, day, hour, minute, second) &#123; return '已运行' + year + ' 年 ' + day + ' 天 '+ hour + ' 时 ' + minute + ' 分 ' + second + ' 秒 '; &#125; setSiteCurrentTime(); &lt;/script&gt;&lt;/body&gt;&lt;/html&gt;]]></content>
+      <tags>
+        <tag>Front End</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[hexo markdown写作样式]]></title>
     <url>%2F2018%2F06%2F07%2Fmarkdown%E5%86%99%E4%BD%9C%E6%A0%B7%E5%BC%8F%2F</url>
     <content type="text"><![CDATA[hexo好看写作… 代码块 [language] [title] [url] [link-text] test百度123funtion test() &#123; console.log('test');&#125; []百度123funtion test() &#123; console.log(&apos;test&apos;);&#125; 行代码 diff12- theme: landscape+ theme: next 标签 修改主题配置 123456789101112note: # Note tag style values: # - simple bs-callout old alert style. Default. # - modern bs-callout new (v2-v3) alert style. # - flat flat callout style with background, like on Mozilla or StackOverflow. # - disabled disable all CSS styles import of note tag. style: flat icons: true border_radius: 3 # Offset lighter of background in % for modern and flat styles (modern: -12 | 12; flat: -18 | 6). # Offset also applied to label tag variables. This option can work with disabled note tag. light_bg_offset: 0 hello infohello defaultprimarysuccessdangerdanger no-icon]]></content>

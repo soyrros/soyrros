@@ -376,7 +376,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -387,7 +387,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -398,7 +398,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -431,9 +431,75 @@
 
           
           
-
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-globe"></i>
+                
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://iissnan.com/progit/" title="Pro Git" target="_blank">Pro Git</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.crx4chrome.com" title="crx4chrome" target="_blank">crx4chrome</a>
+                  </li>
+                
+              </ul>
+            </div>
           
 
+          <div id="site-currentTime"></div>
+
+<script type="text/javascript">
+	function setSiteCurrentTime() {
+		window.setTimeout("setSiteCurrentTime()", 1000);
+		var second = 1000; // 秒
+		var minute = second * 60; // 分
+		var hour = minute * 60; // 时
+		var day = hour * 24; // 天
+		var year = day * 365; // 年
+
+		var currentDate = new Date(); // 获取当前时间
+		var currentYear = currentDate.getFullYear();
+		var currentMonth = currentDate.getMonth() + 1;
+
+		var currentDay = currentDate.getDate();
+		var currentHour = currentDate.getHours();
+		var currentMinute = currentDate.getMinutes();
+		var currentSecond = currentDate.getSeconds();
+		//
+		//2018-05-31
+		var birth = Date.UTC(2018, 05, 31, 12, 00, 00); // 北京时间2016-12-1 00:00:00
+		var now = Date.UTC(currentYear, currentMonth, currentDay, currentHour, currentMinute, currentSecond);
+
+		var diff = now - birth;
+		var diffYear = Math.floor(diff/year);
+		var diffDay = Math.floor((diff/day) - diffYear*365);
+		var diffHour = Math.floor((diff - (diffYear*365+diffDay)*day)/hour);
+		var diffMinute = Math.floor((diff-(diffYear*365+diffDay)*day - diffHour*hour)/minute);
+		var diffSecond = Math.floor((diff - (diffYear*365+diffDay)*day - diffHour*hour - diffMinute*minute)/second);
+
+		document.getElementById('site-currentTime').innerHTML = formartHTML(diffYear, diffDay , diffHour, diffMinute, diffSecond);
+	}
+
+	function formartHTML(year, day, hour, minute, second) {
+		var time = '已运行',  y = year + ' 年 ', d = day + ' 天 ', h = hour + ' 时 ', m = minute + ' 分 ', s = second+ ' 秒 ';
+
+		if( year > 0 ) {
+			time += y;
+		}
+
+		time += d + h + m + s;
+		var html = '<i class="fa fa-hourglass-half"/>'
+			html += '<span>' + time + '</span>';
+
+		return html;
+		// return html + '已运行 ' + year + ' 年 ' + day + ' 天 '+ hour + ' 时 ' + minute + ' 分 ' + second+ ' 秒 ';
+	}
+	setSiteCurrentTime();
+</script>
         </div>
       </section>
 
