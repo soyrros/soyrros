@@ -1857,7 +1857,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #e2ff57;
+  background: #fff4cb;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2784,6 +2784,7 @@ p a,
 }
 code,
 a,
+.post-body,
 #site-currentTime span,
 .links-of-blogroll-title,
 .highlight figcaption span,
