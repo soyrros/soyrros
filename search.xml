@@ -1,9 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Lucene全文检索基本原理]]></title>
+    <url>%2F2018%2F06%2F20%2FLucene%E5%85%A8%E6%96%87%E6%A3%80%E7%B4%A2%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86%2F</url>
+    <content type="text"></content>
+      <categories>
+        <category>JAVA</category>
+      </categories>
+      <tags>
+        <tag>JAVA</tag>
+        <tag>Lucene</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[FlexPaper初识]]></title>
     <url>%2F2018%2F06%2F19%2FFlexPaper%E5%88%9D%E8%AF%86%2F</url>
-    <content type="text"><![CDATA[FlexPaper是一个开源轻量级的在浏览器上显示各种文档的组件，被设计用来与PDF2SWF一起使用， 使在Flex中显示PDF成为可能，而这个过程并无需PDF软件环境的支持。它可以被当做Flex的库来使用。 下载官网地址：https://flowpaper.com注：官网不再提供FlexPaper下载，更名为flowPaper。 FlexPaper 1.5.1及 FlexPaper 2.2.4下载地址：http://www.veryhuo.com/down/html/177274.html 预览浏览器打开index.html 可能遇到的问题 FlexPaper 1.5.1运行index.html；右上角一直loading，无法显示swf。 原因：Flexpaper还没获得Adobe Flash的信任。前往Global Security Settings panel为例子所在文件夹添加信任。 FlexPaper 2.2.4运行index.html。提示：You are trying to use FlexPaper from a local directory. 解决办法：将例子部署至Tomcat或其他服务器环境即可。]]></content>
+    <content type="text"><![CDATA[FlexPaper是一个开源轻量级的在浏览器上显示各种文档的组件，被设计用来与PDF2SWF一起使用， 使在Flex中显示PDF成为可能，而这个过程并无需PDF软件环境的支持。它可以被当做Flex的库来使用。 下载官网地址：https://flowpaper.com注：官网不再提供FlexPaper下载，更名为flowPaper。 FlexPaper 1.5.1及 FlexPaper 2.2.4下载地址：http://www.veryhuo.com/down/html/177274.html 预览浏览器打开index.html 可能遇到的问题FlexPaper 1.5.1运行index.html；右上角一直loading，无法显示swf。 原因：Flexpaper还没获得Adobe Flash的信任。前往Global Security Settings panel为例子所在文件夹添加信任。 FlexPaper 2.2.4运行index.html。提示：You are trying to use FlexPaper from a local directory. 解决办法：将例子部署至Tomcat或其他服务器环境即可。 Your browser is not compatible with FlexPaper… 进入chrome://settings/content/flash，将对应网站加入允许列表。 http://192.168.10.106:8010/]]></content>
       <tags>
         <tag>FlexPaper</tag>
       </tags>
