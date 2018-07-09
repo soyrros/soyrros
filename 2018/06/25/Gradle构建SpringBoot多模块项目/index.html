@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Gradle,Spring Boot," />
 
 
 
@@ -86,16 +86,18 @@
 
 
 
-<meta name="description" content="存一寸光阴，换一个世纪。">
-<meta property="og:type" content="website">
-<meta property="og:title" content="chiangfai&#39; s blog">
-<meta property="og:url" content="https://chiangfai.github.io/archives/2018/06/index.html">
+<meta name="description" content="Gradle构建Spring Boot多模块项目准备工作：gradle工具 4.7">
+<meta name="keywords" content="Gradle,Spring Boot">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Gradle构建SpringBoot多模块项目">
+<meta property="og:url" content="https://chiangfai.github.io/2018/06/25/Gradle构建SpringBoot多模块项目/index.html">
 <meta property="og:site_name" content="chiangfai&#39; s blog">
-<meta property="og:description" content="存一寸光阴，换一个世纪。">
+<meta property="og:description" content="Gradle构建Spring Boot多模块项目准备工作：gradle工具 4.7">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-06-25T08:55:19.865Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="chiangfai&#39; s blog">
-<meta name="twitter:description" content="存一寸光阴，换一个世纪。">
+<meta name="twitter:title" content="Gradle构建SpringBoot多模块项目">
+<meta name="twitter:description" content="Gradle构建Spring Boot多模块项目准备工作：gradle工具 4.7">
 
 
 
@@ -125,13 +127,13 @@
 
 
 
-  <link rel="canonical" href="https://chiangfai.github.io/archives/2018/06/"/>
+  <link rel="canonical" href="https://chiangfai.github.io/2018/06/25/Gradle构建SpringBoot多模块项目/"/>
 
 
 
 
 
-  <title>归档 | chiangfai' s blog</title>
+  <title>Gradle构建SpringBoot多模块项目 | chiangfai' s blog</title>
   
 
 
@@ -150,7 +152,7 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -278,407 +280,212 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
+  <div id="posts" class="posts-expand">
+    
 
-      <span class="archive-page-counter">
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://chiangfai.github.io/2018/06/25/Gradle构建SpringBoot多模块项目/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="chiangfai">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://p9vt42nrg.bkt.clouddn.com/image/avatar/noface.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="chiangfai' s blog">
+    </span>
+
+    
+      <header class="post-header">
+
         
         
+          <h1 class="post-title" itemprop="name headline">Gradle构建SpringBoot多模块项目</h1>
         
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-25T14:02:51+08:00">
+                2018-06-25
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-06-25T16:55:19+08:00">
+                2018-06-25
+              </time>
+            
+          </span>
+
           
-        
-        嗯..! 目前共计 12 篇日志。 继续努力。
-      </span>
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Gradle/" itemprop="url" rel="index">
+                    <span itemprop="name">Gradle</span>
+                  </a>
+                </span>
 
-      
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Gradle/Spring-Boot/" itemprop="url" rel="index">
+                    <span itemprop="name">Spring Boot</span>
+                  </a>
+                </span>
 
-        
-        
-        
-
-        
+                
+                
+              
+            </span>
           
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2018">2018</h1>
-          </div>
-        
-        
 
-        
+          
+            
+          
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+          
+          
 
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/06/25/Gradle构建SpringBoot多模块项目/" itemprop="url">
-              
-                <span itemprop="name">Gradle构建SpringBoot多模块项目</span>
-              
-            </a>
-        
-      </h2>
+          
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-06-25T14:02:51+08:00"
-              content="2018-06-25" >
-          06-25
-        </time>
-      </div>
+          
 
-    </header>
-  </article>
+          
 
+        </div>
+      </header>
+    
 
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/06/25/tesseract-ocr字库训练/" itemprop="url">
-              
-                <span itemprop="name">tesseract-ocr字库训练</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-06-25T09:37:03+08:00"
-              content="2018-06-25" >
-          06-25
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/06/20/Lucene全文检索基本原理/" itemprop="url">
-              
-                <span itemprop="name">Lucene全文检索基本原理</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-06-20T08:18:10+08:00"
-              content="2018-06-20" >
-          06-20
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
+      
+        <div class="note "><p>Gradle构建Spring Boot多模块项目<br>准备工作：<br>gradle工具 4.7</p></div>
+<a id="more"></a>
+<h1 id="目录构建"><a href="#目录构建" class="headerlink" title="目录构建"></a>目录构建</h1><h2 id="创建项目"><a href="#创建项目" class="headerlink" title="创建项目"></a>创建项目</h2><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">mkdir</span> <span class="keyword">st</span>-gradle-multi-project &amp;&amp; <span class="keyword">cd</span> <span class="keyword">st</span>-gradle-multi-project</span><br></pre></td></tr></table></figure>
+<h2 id="gradle初始化"><a href="#gradle初始化" class="headerlink" title="gradle初始化"></a>gradle初始化</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> gradle init</span></span><br></pre></td></tr></table></figure>
+<h2 id="创建多模块目录"><a href="#创建多模块目录" class="headerlink" title="创建多模块目录"></a>创建多模块目录</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> mkdir projects &amp;&amp; <span class="built_in">cd</span> projects</span></span><br></pre></td></tr></table></figure>
+<h2 id="新建一个Spring-Boot项目目录"><a href="#新建一个Spring-Boot项目目录" class="headerlink" title="新建一个Spring Boot项目目录"></a>新建一个Spring Boot项目目录</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> mkdir -p app/<span class="built_in">source</span>/&#123;java,<span class="built_in">test</span>-java,<span class="built_in">test</span>-resources&#125; app/config/site-data</span></span><br></pre></td></tr></table></figure>
+<h2 id="新建一个Java项目结构目录"><a href="#新建一个Java项目结构目录" class="headerlink" title="新建一个Java项目结构目录"></a>新建一个Java项目结构目录</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> mkdir -p core/<span class="built_in">source</span>/&#123;java,<span class="built_in">test</span>-java,<span class="built_in">test</span>-resources&#125; core/config</span></span><br></pre></td></tr></table></figure>
+<h2 id="为每个项目模块新建build-gradle文件"><a href="#为每个项目模块新建build-gradle文件" class="headerlink" title="为每个项目模块新建build.gradle文件"></a>为每个项目模块新建build.gradle文件</h2><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ echo <span class="string">'dependencies&#123;&#125;'</span> &gt; app/build<span class="selector-class">.gradle</span> &amp;&amp; cp app/build<span class="selector-class">.gradle</span> core/build.gradle</span><br></pre></td></tr></table></figure>
+<h1 id="配置Gradle构建"><a href="#配置Gradle构建" class="headerlink" title="配置Gradle构建"></a>配置Gradle构建</h1><p><strong>修改settings.gradle</strong></p>
+<blockquote>
+<p>确保app、core项目包含在多项目构建中 。<br>配置参考：<a href="https://docs.gradle.org/current/userguide/build_lifecycle.html#sec:settings_file" target="_blank" rel="noopener">https://docs.gradle.org/current/userguide/build_lifecycle.html#sec:settings_file</a></p>
+</blockquote>
+<h2 id="Flat-layouts"><a href="#Flat-layouts" class="headerlink" title="Flat layouts"></a>Flat layouts</h2><p><code>includeFlat</code><br><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">includeFlat</span> <span class="string">'app'</span>, <span class="string">'core'</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="Hierarchical-layouts"><a href="#Hierarchical-layouts" class="headerlink" title="Hierarchical layouts"></a>Hierarchical layouts</h2><p><code>include</code><br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">file</span><span class="params">(<span class="string">'projects'</span>)</span></span><span class="selector-class">.eachDir</span> &#123; dir -&gt;</span><br><span class="line">    include dir.name</span><br><span class="line">    project(<span class="string">":$&#123;dir.name&#125;"</span>)<span class="selector-class">.projectDir</span> = dir</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h1 id="修改st-gradle-multi-project-build-gradle"><a href="#修改st-gradle-multi-project-build-gradle" class="headerlink" title="修改st-gradle-multi-project/build.gradle"></a>修改st-gradle-multi-project/build.gradle</h1><figure class="highlight bash"><figcaption><span>文件路径：st-gradle-multi-project/build.gradle</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br></pre></td><td class="code"><pre><span class="line">buildscript &#123;</span><br><span class="line">    repositories &#123;</span><br><span class="line">        mavenCentral()</span><br><span class="line">        maven &#123;</span><br><span class="line">            url <span class="string">'http://maven.aliyun.com/nexus/content/groups/public/'</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    dependencies &#123;</span><br><span class="line">        classpath <span class="string">'org.springframework.boot:spring-boot-gradle-plugin:2.0.1.RELEASE'</span></span><br><span class="line">        //classpath <span class="string">'io.spring.gradle:dependency-management-plugin:1.0.5.RELEASE'</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">//def javaProjects = getSubprojects()</span><br><span class="line">def bootProjects = [ <span class="string">'app'</span> ]</span><br><span class="line"></span><br><span class="line">configure(allprojects)&#123;</span><br><span class="line">    apply plugin: <span class="string">'eclipse'</span></span><br><span class="line">    apply plugin: <span class="string">'idea'</span></span><br><span class="line"></span><br><span class="line">    version = <span class="string">'1.3.1.4'</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">configure(subprojects) &#123;</span><br><span class="line"></span><br><span class="line">    apply plugin: <span class="string">'java'</span></span><br><span class="line"></span><br><span class="line">    apply plugin: <span class="string">"io.spring.dependency-management"</span></span><br><span class="line"></span><br><span class="line">    repositories &#123;</span><br><span class="line">        maven &#123;</span><br><span class="line">            url <span class="string">'http://maven.aliyun.com/nexus/content/groups/public/'</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    sourceSets &#123;</span><br><span class="line">        main &#123;</span><br><span class="line">            java &#123;</span><br><span class="line">                srcDir <span class="string">'source/java'</span></span><br><span class="line">            &#125;</span><br><span class="line">            resources &#123;</span><br><span class="line">                srcDir <span class="string">'config'</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="built_in">test</span> &#123;</span><br><span class="line">            java &#123;</span><br><span class="line">                srcDir <span class="string">'source/test-java'</span></span><br><span class="line">            &#125;</span><br><span class="line">            resources &#123;</span><br><span class="line">                srcDir <span class="string">'source/test-resources'</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    afterEvaluate &#123;</span><br><span class="line">        dependencyManagement &#123;</span><br><span class="line">            imports &#123;</span><br><span class="line">                mavenBom <span class="string">'io.spring.platform:platform-bom:Cairo-RELEASE'</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    dependencies &#123;</span><br><span class="line">        //compile <span class="string">'org.slf4j:slf4j-api'</span></span><br><span class="line">        //testCompile <span class="string">'junit:junit'</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    configurations &#123;</span><br><span class="line">        //all*.exclude group: <span class="string">'commons-logging'</span>, module: <span class="string">'commons-logging'</span></span><br><span class="line">        //all*.exclude group: <span class="string">'log4j'</span>, module: <span class="string">'log4j'</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    task listJars(description: <span class="string">'Display all compile jars.'</span>) &lt;&lt; &#123;</span><br><span class="line">        configurations.compile.each &#123; File file -&gt; println file.name &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">configure(bootProjects)&#123;</span><br><span class="line">    apply plugin: <span class="string">'org.springframework.boot'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/06/19/FlexPaper初识/" itemprop="url">
-              
-                <span itemprop="name">FlexPaper初识</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-06-19T20:35:36+08:00"
-              content="2018-06-19" >
-          06-19
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/06/13/线程池/" itemprop="url">
-              
-                <span itemprop="name">线程池</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-06-13T22:58:44+08:00"
-              content="2018-06-13" >
-          06-13
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/06/13/git提交本地项目到github/" itemprop="url">
-              
-                <span itemprop="name">git提交本地项目到github</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-06-13T21:39:34+08:00"
-              content="2018-06-13" >
-          06-13
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/06/09/Java面试汇总/" itemprop="url">
-              
-                <span itemprop="name">Java面试汇总</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-06-09T08:14:57+08:00"
-              content="2018-06-09" >
-          06-09
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/06/08/hexo博客自定义/" itemprop="url">
-              
-                <span itemprop="name">hexo博客自定义</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-06-08T17:12:41+08:00"
-              content="2018-06-08" >
-          06-08
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/06/08/站点运行时长/" itemprop="url">
-              
-                <span itemprop="name">站点运行时长统计</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-06-08T16:51:28+08:00"
-              content="2018-06-08" >
-          06-08
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/06/07/markdown写作样式/" itemprop="url">
-              
-                <span itemprop="name">hexo markdown写作样式</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-06-07T17:01:40+08:00"
-              content="2018-06-07" >
-          06-07
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
     </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Gradle/" rel="tag"># Gradle</a>
+          
+            <a href="/tags/Spring-Boot/" rel="tag"># Spring Boot</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/06/25/tesseract-ocr字库训练/" rel="next" title="tesseract-ocr字库训练">
+                <i class="fa fa-chevron-left"></i> tesseract-ocr字库训练
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/07/09/MySQL安装及简单使用/" rel="prev" title="MySQL安装及简单使用">
+                MySQL安装及简单使用 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -686,6 +493,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -708,8 +519,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -856,6 +676,22 @@
       </section>
 
       
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#目录构建"><span class="nav-number">1.</span> <span class="nav-text">目录构建</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#创建项目"><span class="nav-number">1.1.</span> <span class="nav-text">创建项目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#gradle初始化"><span class="nav-number">1.2.</span> <span class="nav-text">gradle初始化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建多模块目录"><span class="nav-number">1.3.</span> <span class="nav-text">创建多模块目录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#新建一个Spring-Boot项目目录"><span class="nav-number">1.4.</span> <span class="nav-text">新建一个Spring Boot项目目录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#新建一个Java项目结构目录"><span class="nav-number">1.5.</span> <span class="nav-text">新建一个Java项目结构目录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为每个项目模块新建build-gradle文件"><span class="nav-number">1.6.</span> <span class="nav-text">为每个项目模块新建build.gradle文件</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#配置Gradle构建"><span class="nav-number">2.</span> <span class="nav-text">配置Gradle构建</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Flat-layouts"><span class="nav-number">2.1.</span> <span class="nav-text">Flat layouts</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hierarchical-layouts"><span class="nav-number">2.2.</span> <span class="nav-text">Hierarchical layouts</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#修改st-gradle-multi-project-build-gradle"><span class="nav-number">3.</span> <span class="nav-text">修改st-gradle-multi-project/build.gradle</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
 
       
 
@@ -984,6 +820,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
