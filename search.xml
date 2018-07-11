@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[CentOS-7初识]]></title>
+    <url>%2F2018%2F07%2F11%2FCentOS-7%E5%88%9D%E8%AF%86%2F</url>
+    <content type="text"><![CDATA[CentOS 是一个基于Red Hat Linux 提供的可自由使用源代码的企业级Linux发行版本。每个版本的 CentOS都会获得十年的支持（通过安全更新方式）。新版本的 CentOS 大约每两年发行一次，而每个版本的 CentOS 会定期（大概每六个月）更新一次，以便支持新的硬件。这样，建立一个安全、低维护、稳定、高预测性、高重复性的 Linux 环境。 [1] CentOS是Community Enterprise Operating System的缩写。… 环境VMware 12 + CentOS 7搭建参考： 使用安装wget wget是一个从网络上自动下载文件的自由工具，支持通过HTTP、HTTPS、FTP三个最常见的TCP/IP协议下载，并可以使用HTTP代理。wget名称的由来是“World Wide Web”与“get”的结合。1yum install wget 修改yum镜像源123[root@localhost ~]# mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo // 备份系统自带镜像源[root@localhost ~]# wget -O /etc/yum.repos.d/CentOs-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo //下载aliyun镜像源[root@localhost ~]# yum clean all // 清除缓存 安装redis1[root@localhost ~]# yum install redis 注：yum如果无法安装redis，先添加epel源。yum install epel-release 启动/停止redis服务123[root@localhost ~]# redis-server[root@localhost ~]# service redis start/stop[root@localhost ~]# systemctl start/stop redis 连接redis1[root@localhost ~]# redis-cli 命令合集查看系统版本号12[root@localhost ~]# cat /etc/redhat-releaseCentOS Linux release 7.5.1804 (Core)]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+        <tag>CentOS 7</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[MySQL安装及简单使用]]></title>
     <url>%2F2018%2F07%2F09%2FMySQL%E5%AE%89%E8%A3%85%E5%8F%8A%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8%2F</url>
     <content type="text"><![CDATA[安装123$ brew remove mysql$ brew cleanup$ brew install mysql 服务启动/停止12$ brew services list //$ brew services start/stop mysql 常用命令语句查看帮助1$ mysqld --help --verbose | more //查看帮助，按空格下翻 修改密码1$ mysqladmin -u root -h localhost password password 登陆12$ mysql -uroot -p // 进入mysql控制台$ ****** 查看端口号1$ show global variables like 'port'; 操作数据库命令1234$ show databases; //$ create database [db_name] default character set utf8 collate utf8_general_ci;$ use [db_name]; //切换数据库$ drop database [db_name]; //删除 12345$ show tables;$ create table [table_name] (id int(10) NOT NULL AUTO_INCREMENT,PRIMARY KEY(id), user_name varchar(20));$ describe/desc [table_name]; //显示表结构$ drop table [table_name]; //删除表$ delete from [table_name]; //删除表中所有数据，不删除表结构。 12$ insert into [table_name](...) values(...);$ source /Users/chiangfai/sql/test.sql; 聚合函数数据表12345678910mysql&gt; select * from stu_scores;+----------+---------+-------+| stu_name | subject | score |+----------+---------+-------+| 张三 | 语文 | 80.5 || lisi | 数学 | 70 || 张三 | 数学 | 90 || lisi | 语文 | 80.5 |+----------+---------+-------+4 rows in set (0.00 sec) 列转行列转行12345678mysql&gt; select stu_name, max( case when subject='语文' then score end) as 语文, max(case when subject='数学' then score end) as 数学 from stu_scores group by stu_name;+----------+--------+--------+| stu_name | 语文 | 数学 |+----------+--------+--------+| lisi | 80.5 | 70 || 张三 | 80.5 | 90 |+----------+--------+--------+2 rows in set (0.00 sec) 列转行：利用max(case when then)max—聚合函数 取最大值(case course when ‘语文’ then score else 0 end) —判断as 语文—别名作为列名 group_concat（）合并字段合并字段显示1234567mysql&gt; select stu_name, group_concat(subject,":",score) as 成绩 from stu_scores group by stu_name;+----------+-----------------------+| stu_name | 成绩 |+----------+-----------------------+| lisi | 数学:70,语文:80.5 || 张三 | 语文:80.5,数学:90 |+----------+-----------------------+]]></content>
