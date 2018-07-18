@@ -1,0 +1,1218 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Linux,CentOS 7,Redis," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="部署环境VMware： VMwareworkstation_full_12.1.0.2487.1453173744.exeCentOS 7： CentOS Linux release 7.5.1804 (Core)">
+<meta name="keywords" content="Linux,CentOS 7,Redis">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CentOS-7之Redis集群搭建">
+<meta property="og:url" content="https://chiangfai.github.io/2018/07/18/CentOS-7之Redis集群搭建/index.html">
+<meta property="og:site_name" content="chiangfai&#39; s blog">
+<meta property="og:description" content="部署环境VMware： VMwareworkstation_full_12.1.0.2487.1453173744.exeCentOS 7： CentOS Linux release 7.5.1804 (Core)">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-07-18T14:48:57.807Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CentOS-7之Redis集群搭建">
+<meta name="twitter:description" content="部署环境VMware： VMwareworkstation_full_12.1.0.2487.1453173744.exeCentOS 7： CentOS Linux release 7.5.1804 (Core)">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://chiangfai.github.io/2018/07/18/CentOS-7之Redis集群搭建/"/>
+
+
+
+
+
+  <title>CentOS-7之Redis集群搭建 | chiangfai' s blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">chiangfai' s blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://chiangfai.github.io/2018/07/18/CentOS-7之Redis集群搭建/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="chiangfai">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://p9vt42nrg.bkt.clouddn.com/image/avatar/noface.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="chiangfai' s blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">CentOS-7之Redis集群搭建</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-18T22:33:59+08:00">
+                2018-07-18
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-07-18T22:48:57+08:00">
+                2018-07-18
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Redis/" itemprop="url" rel="index">
+                    <span itemprop="name">Redis</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="部署环境"><a href="#部署环境" class="headerlink" title="部署环境"></a>部署环境</h1><p>VMware： VMwareworkstation_full_12.1.0.2487.1453173744.exe<br>CentOS 7： CentOS Linux release 7.5.1804 (Core)</p>
+<a id="more"></a>
+<h1 id="redis-安装"><a href="#redis-安装" class="headerlink" title="redis 安装"></a><code>redis</code> 安装</h1><h2 id="下载解压拷贝redis"><a href="#下载解压拷贝redis" class="headerlink" title="下载解压拷贝redis"></a>下载解压拷贝redis</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]<span class="comment"># mkdir /soft &amp;&amp; cd /soft</span></span><br><span class="line">[root@localhost soft]<span class="comment"># wget http://download.redis.io/releases/redis-4.0.10.tar.gz</span></span><br><span class="line">[root@localhost soft]<span class="comment"># tar xzf redis-4.0.10.tar.gz</span></span><br><span class="line">[root@localhost soft]<span class="comment"># mv redis-4.0.10 /usr/local/redis-4.0.10 &amp;&amp; cd /usr/local/redis-4.0.10</span></span><br></pre></td></tr></table></figure>
+<h2 id="编译redis"><a href="#编译redis" class="headerlink" title="编译redis"></a>编译redis</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost redis-4.0.10]<span class="comment"># make</span></span><br><span class="line"><span class="built_in">cd</span> src &amp;&amp; make all</span><br><span class="line">make[1]: 进入目录“/usr/<span class="built_in">local</span>/redis-4.0.10/src”</span><br><span class="line">    CC Makefile.dep</span><br><span class="line">make[1]: 离开目录“/usr/<span class="built_in">local</span>/redis-4.0.10/src”</span><br><span class="line">make[1]: 进入目录“/usr/<span class="built_in">local</span>/redis-4.0.10/src”</span><br><span class="line">rm -rf redis-server redis-sentinel redis-cli redis-benchmark redis-check-rdb redis-check-aof *.o *.gcda *.gcno *.gcov redis.info lcov-html Makefile.dep dict-benchmark</span><br><span class="line">(<span class="built_in">cd</span> ../deps &amp;&amp; make distclean)</span><br><span class="line">make[2]: 进入目录“/usr/<span class="built_in">local</span>/redis-4.0.10/deps”</span><br><span class="line">(<span class="built_in">cd</span> hiredis &amp;&amp; make clean) &gt; /dev/null || <span class="literal">true</span></span><br><span class="line">(<span class="built_in">cd</span> linenoise &amp;&amp; make clean) &gt; /dev/null || <span class="literal">true</span></span><br><span class="line">(<span class="built_in">cd</span> lua &amp;&amp; make clean) &gt; /dev/null || <span class="literal">true</span></span><br><span class="line">(<span class="built_in">cd</span> jemalloc &amp;&amp; [ -f Makefile ] &amp;&amp; make distclean) &gt; /dev/null || <span class="literal">true</span></span><br><span class="line">(rm -f .make-*)</span><br><span class="line">make[2]: 离开目录“/usr/<span class="built_in">local</span>/redis-4.0.10/deps”</span><br><span class="line">(rm -f .make-*)</span><br><span class="line"><span class="built_in">echo</span> STD=-std=c99 -pedantic -DREDIS_STATIC=<span class="string">''</span> &gt;&gt; .make-settings</span><br><span class="line"><span class="built_in">echo</span> WARN=-Wall -W -Wno-missing-field-initializers &gt;&gt; .make-settings</span><br><span class="line"><span class="built_in">echo</span> OPT=-O2 &gt;&gt; .make-settings</span><br><span class="line"><span class="built_in">echo</span> MALLOC=jemalloc &gt;&gt; .make-settings</span><br><span class="line"><span class="built_in">echo</span> CFLAGS= &gt;&gt; .make-settings</span><br><span class="line"><span class="built_in">echo</span> LDFLAGS= &gt;&gt; .make-settings</span><br><span class="line"><span class="built_in">echo</span> REDIS_CFLAGS= &gt;&gt; .make-settings</span><br><span class="line"><span class="built_in">echo</span> REDIS_LDFLAGS= &gt;&gt; .make-settings</span><br><span class="line"><span class="built_in">echo</span> PREV_FINAL_CFLAGS=-std=c99 -pedantic -DREDIS_STATIC=<span class="string">''</span> -Wall -W -Wno-missing-field-initializers -O2 -g -ggdb   -I../deps/hiredis -I../deps/linenoise -I../deps/lua/src -DUSE_JEMALLOC -I../deps/jemalloc/include &gt;&gt; .make-settings</span><br><span class="line"><span class="built_in">echo</span> PREV_FINAL_LDFLAGS=  -g -ggdb -rdynamic &gt;&gt; .make-settings</span><br><span class="line">(<span class="built_in">cd</span> ../deps &amp;&amp; make hiredis linenoise lua jemalloc)</span><br><span class="line">make[2]: 进入目录“/usr/<span class="built_in">local</span>/redis-4.0.10/deps”</span><br><span class="line">(<span class="built_in">cd</span> hiredis &amp;&amp; make clean) &gt; /dev/null || <span class="literal">true</span></span><br><span class="line">(<span class="built_in">cd</span> linenoise &amp;&amp; make clean) &gt; /dev/null || <span class="literal">true</span></span><br><span class="line">(<span class="built_in">cd</span> lua &amp;&amp; make clean) &gt; /dev/null || <span class="literal">true</span></span><br><span class="line">(<span class="built_in">cd</span> jemalloc &amp;&amp; [ -f Makefile ] &amp;&amp; make distclean) &gt; /dev/null || <span class="literal">true</span></span><br><span class="line">(rm -f .make-*)</span><br><span class="line">(<span class="built_in">echo</span> <span class="string">""</span> &gt; .make-cflags)</span><br><span class="line">(<span class="built_in">echo</span> <span class="string">""</span> &gt; .make-ldflags)</span><br><span class="line">MAKE hiredis</span><br><span class="line"><span class="built_in">cd</span> hiredis &amp;&amp; make static</span><br><span class="line">make[3]: 进入目录“/usr/<span class="built_in">local</span>/redis-4.0.10/deps/hiredis”</span><br><span class="line">gcc -std=c99 -pedantic -c -O3 -fPIC  -Wall -W -Wstrict-prototypes -Wwrite-strings -g -ggdb  net.c</span><br><span class="line">make[3]: gcc：命令未找到</span><br><span class="line">make[3]: *** [net.o] 错误 127</span><br><span class="line">make[3]: 离开目录“/usr/<span class="built_in">local</span>/redis-4.0.10/deps/hiredis”</span><br><span class="line">make[2]: *** [hiredis] 错误 2</span><br><span class="line">make[2]: 离开目录“/usr/<span class="built_in">local</span>/redis-4.0.10/deps”</span><br><span class="line">make[1]: [persist-settings] 错误 2 (忽略)</span><br><span class="line">    CC adlist.o</span><br><span class="line">/bin/sh: cc: 未找到命令</span><br><span class="line">make[1]: *** [adlist.o] 错误 127</span><br><span class="line">make[1]: 离开目录“/usr/<span class="built_in">local</span>/redis-4.0.10/src”</span><br><span class="line">make: *** [all] 错误 2</span><br></pre></td></tr></table></figure>
+<h2 id="安装-gcc"><a href="#安装-gcc" class="headerlink" title="安装 gcc"></a>安装 <code>gcc</code></h2><figure class="highlight gauss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">[root<span class="comment">@localhost redis-4.0.10]# yum install gcc</span></span><br><span class="line"><span class="comment">[root@</span>localhost redis<span class="number">-4.0</span><span class="number">.10</span>]<span class="meta"># make</span></span><br><span class="line">cd src &amp;&amp; <span class="built_in">make</span> all</span><br><span class="line"><span class="built_in">make</span>[<span class="number">1</span>]: 进入目录“/usr/<span class="keyword">local</span>/redis<span class="number">-4.0</span><span class="number">.10</span>/src”</span><br><span class="line">    CC Makefile.dep</span><br><span class="line"><span class="built_in">make</span>[<span class="number">1</span>]: 离开目录“/usr/<span class="keyword">local</span>/redis<span class="number">-4.0</span><span class="number">.10</span>/src”</span><br><span class="line"><span class="built_in">make</span>[<span class="number">1</span>]: 进入目录“/usr/<span class="keyword">local</span>/redis<span class="number">-4.0</span><span class="number">.10</span>/src”</span><br><span class="line">    CC adlist.o</span><br><span class="line">In file included from adlist.c:<span class="number">34</span>:<span class="number">0</span>:</span><br><span class="line">zmalloc.h:<span class="number">50</span>:<span class="number">31</span>: 致命错误：jemalloc/jemalloc.h：没有那个文件或目录</span><br><span class="line"> <span class="meta">#<span class="meta-keyword">include</span> &lt;jemalloc/jemalloc.h&gt;</span></span><br><span class="line">                               ^</span><br><span class="line">编译中断。</span><br><span class="line"><span class="built_in">make</span>[<span class="number">1</span>]: *** [adlist.o] 错误 <span class="number">1</span></span><br><span class="line"><span class="built_in">make</span>[<span class="number">1</span>]: 离开目录“/usr/<span class="keyword">local</span>/redis<span class="number">-4.0</span><span class="number">.10</span>/src”</span><br><span class="line"><span class="built_in">make</span>: *** [all] 错误 <span class="number">2</span></span><br></pre></td></tr></table></figure>
+<div class="note info"><p>注：如果在make的时候不指定内存管理方式，使用<code>make MALLOC=libc</code>指令。malloc是管理内存碎片的。</p></div>
+<figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root<span class="symbol">@localhost</span> redis<span class="number">-4.0</span><span class="number">.10</span>]<span class="meta"># make MALLOC=libc</span></span><br><span class="line">[root<span class="symbol">@localhost</span> redis<span class="number">-4.0</span><span class="number">.10</span>]<span class="meta"># make &amp; make install</span></span><br></pre></td></tr></table></figure>
+<h1 id="创建-redis-节点"><a href="#创建-redis-节点" class="headerlink" title="创建 redis 节点"></a>创建 <code>redis</code> 节点</h1><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost redis-4.0.10]# <span class="keyword">mkdir</span> <span class="keyword">conf</span>-<span class="keyword">cluster</span> &amp;&amp; <span class="keyword">cd</span> <span class="keyword">conf</span>-<span class="keyword">cluster</span></span><br><span class="line">[root@localhost <span class="keyword">conf</span>-<span class="keyword">cluster</span>]# touch &#123;9000..9002&#125;.<span class="keyword">conf</span></span><br></pre></td></tr></table></figure>
+<h2 id="修改-9000-9002-conf文件。"><a href="#修改-9000-9002-conf文件。" class="headerlink" title="修改{9000..9002}.conf文件。"></a>修改{9000..9002}.conf文件。</h2><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">port 9000</span><br><span class="line">bind 192.168.1.100</span><br><span class="line">daemonize yes</span><br><span class="line"><span class="keyword">cluster</span>-enabled yes</span><br><span class="line"><span class="keyword">cluster</span>-node-timeout 15000</span><br><span class="line">appendonly yes</span><br><span class="line">pidfile /<span class="keyword">var</span>/<span class="keyword">run</span>/redis_9000.pid</span><br><span class="line"><span class="keyword">cluster</span>-config-<span class="keyword">file</span> nodes-9000.<span class="keyword">conf</span></span><br></pre></td></tr></table></figure>
+<h2 id="启动｛9000-9002｝节点"><a href="#启动｛9000-9002｝节点" class="headerlink" title="启动｛9000..9002｝节点"></a>启动｛9000..9002｝节点</h2><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost <span class="keyword">conf</span>-<span class="keyword">cluster</span>]# redis-server 9000.<span class="keyword">conf</span></span><br><span class="line">[root@localhost <span class="keyword">conf</span>-<span class="keyword">cluster</span>]# redis-server 9001.<span class="keyword">conf</span></span><br><span class="line">[root@localhost <span class="keyword">conf</span>-<span class="keyword">cluster</span>]# redis-server 9002.<span class="keyword">conf</span></span><br></pre></td></tr></table></figure>
+<h2 id="检查各-Redis-节点启动情况"><a href="#检查各-Redis-节点启动情况" class="headerlink" title="检查各 Redis 节点启动情况"></a>检查各 <code>Redis</code> 节点启动情况</h2><figure class="highlight mel"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost conf-<span class="keyword">cluster</span>]# ps -ef | grep redis  <span class="comment">//redis节点是否启动成功</span></span><br><span class="line">[root@localhost conf-<span class="keyword">cluster</span>]# netstat -tnlp | grep redis  <span class="comment">//监听节点端口</span></span><br></pre></td></tr></table></figure>
+<h1 id="安装ruby"><a href="#安装ruby" class="headerlink" title="安装ruby"></a>安装<code>ruby</code></h1><div class="note "><p>创建集群时需要用Ruby 运行<code>redis-trib.rb</code>.</p></div>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost <span class="keyword">conf</span>-cluster]# yum -<span class="keyword">y</span> install <span class="keyword">ruby</span> <span class="keyword">ruby</span>-devel rubygems rpm-build</span><br><span class="line">[root@localhost <span class="keyword">conf</span>-cluster]# gem install redis</span><br><span class="line">ERROR:  Could not <span class="keyword">find</span> <span class="keyword">a</span> valid gem <span class="string">'redis'</span> (&gt;= <span class="number">0</span>), here <span class="keyword">is</span> why:</span><br><span class="line">          Unable <span class="keyword">to</span> download data from http<span class="variable">s:</span>//rubygems.org/ - <span class="keyword">no</span> such name (http<span class="variable">s:</span>//rubygems.org/latest_specs.<span class="number">4.8</span>.gz)</span><br></pre></td></tr></table></figure>
+<p>修改 <code>RubyGems</code> 镜像<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost <span class="keyword">conf</span>-cluster]# gem sources --<span class="built_in">add</span> http<span class="variable">s:</span>//gems.<span class="keyword">ruby</span>-china.org/ --<span class="built_in">remove</span> http<span class="variable">s:</span>//rubygems.org/</span><br><span class="line">http<span class="variable">s:</span>//gems.<span class="keyword">ruby</span>-china.org/ added <span class="keyword">to</span> sources</span><br><span class="line">http<span class="variable">s:</span>//rubygems.org/ removed from sources</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight subunit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost conf-cluster]# gem install redis</span><br><span class="line">Fetching: redis<span class="string">-4</span>.0.1.gem (100%)</span><br><span class="line"><span class="keyword">ERROR:  </span>Error installing redis:</span><br><span class="line">    redis requires Ruby version &gt;= 2.2.2.</span><br></pre></td></tr></table></figure>
+<div class="note info"><p>Centos默认支持ruby到2.0.0，可gem 安装redis需要最低是2.2.2<br>解决办法是 先安装rvm，再把ruby版本提升</p></div>
+<h2 id="升级ruby"><a href="#升级ruby" class="headerlink" title="升级ruby"></a>升级ruby</h2><h3 id="安装rvm-ruby版本控制"><a href="#安装rvm-ruby版本控制" class="headerlink" title="安装rvm(ruby版本控制)"></a>安装rvm(ruby版本控制)</h3><p>参考：<br><a href="https://blog.csdn.net/qq_37595946/article/details/77800147" target="_blank" rel="noopener">https://blog.csdn.net/qq_37595946/article/details/77800147</a></p>
+<p><a href="https://ruby-china.org/wiki/rvm-guide" target="_blank" rel="noopener">https://ruby-china.org/wiki/rvm-guide</a><br><figure class="highlight mel"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost conf-<span class="keyword">cluster</span>]# gpg --keyserver hkp:<span class="comment">//keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3</span></span><br><span class="line">[root@localhost conf-<span class="keyword">cluster</span>]# curl -L get.rvm.io | bash -s stable</span><br><span class="line">[root@localhost conf-<span class="keyword">cluster</span>]# <span class="keyword">source</span> /etc/profile.d/rvm.sh</span><br><span class="line">[root@localhost conf-<span class="keyword">cluster</span>]# rvm list known</span><br><span class="line">[root@localhost conf-<span class="keyword">cluster</span>]# rvm install <span class="number">2.5</span><span class="number">.1</span> --<span class="keyword">disable</span>-binary</span><br></pre></td></tr></table></figure></p>
+<div class="note "><p>DNS<br>Checking fallback: <a href="https://ftp.ruby-lang.org/pub/ruby/2.5/ruby-2.5.1.tar.bz2" target="_blank" rel="noopener">https://ftp.ruby-lang.org/pub/ruby/2.5/ruby-2.5.1.tar.bz2</a></p></div>
+<figure class="highlight diff"><figcaption><span>/etc/resolv.conf</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># Generated by NetworkManager</span><br><span class="line"><span class="addition">+ 8.8.8.8</span></span><br><span class="line">nameserver 192.168.1.1</span><br></pre></td></tr></table></figure>
+<h3 id="切换ruby版本"><a href="#切换ruby版本" class="headerlink" title="切换ruby版本"></a>切换ruby版本</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-attr">[root@localhost conf-cluster]</span># <span class="selector-tag">rvm</span> <span class="selector-tag">use</span> 2<span class="selector-class">.5</span><span class="selector-class">.1</span></span><br><span class="line"><span class="selector-attr">[root@localhost conf-cluster]</span># <span class="selector-tag">rvm</span> <span class="selector-tag">remove</span> 2<span class="selector-class">.2</span><span class="selector-class">.0</span></span><br></pre></td></tr></table></figure>
+<h3 id="gem再次安装redis"><a href="#gem再次安装redis" class="headerlink" title="gem再次安装redis"></a>gem再次安装redis</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-attr">[root@localhost conf-cluster]</span># <span class="selector-tag">gem</span> <span class="selector-tag">install</span> <span class="selector-tag">redis</span></span><br><span class="line"><span class="selector-tag">Fetching</span>: <span class="selector-tag">redis-4</span><span class="selector-class">.0</span><span class="selector-class">.1</span><span class="selector-class">.gem</span> (100%)</span><br><span class="line"><span class="selector-tag">Successfully</span> <span class="selector-tag">installed</span> <span class="selector-tag">redis-4</span><span class="selector-class">.0</span><span class="selector-class">.1</span></span><br><span class="line"><span class="selector-tag">Parsing</span> <span class="selector-tag">documentation</span> <span class="selector-tag">for</span> <span class="selector-tag">redis-4</span><span class="selector-class">.0</span><span class="selector-class">.1</span></span><br><span class="line"><span class="selector-tag">Installing</span> <span class="selector-tag">ri</span> <span class="selector-tag">documentation</span> <span class="selector-tag">for</span> <span class="selector-tag">redis-4</span><span class="selector-class">.0</span><span class="selector-class">.1</span></span><br><span class="line"><span class="selector-tag">Done</span> <span class="selector-tag">installing</span> <span class="selector-tag">documentation</span> <span class="selector-tag">for</span> <span class="selector-tag">redis</span> <span class="selector-tag">after</span> 0 <span class="selector-tag">seconds</span></span><br><span class="line">1 <span class="selector-tag">gem</span> <span class="selector-tag">installed</span></span><br></pre></td></tr></table></figure>
+<h1 id="创建redis集群"><a href="#创建redis集群" class="headerlink" title="创建redis集群"></a>创建redis集群</h1><figure class="highlight n1ql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost conf-cluster]# /usr/local/redis-4.0.10/src/redis-trib.rb <span class="keyword">create</span> --replicas <span class="number">1</span> <span class="number">192.168</span><span class="number">.1</span><span class="number">.100</span>:<span class="number">9000</span> <span class="number">192.168</span><span class="number">.1</span><span class="number">.100</span>:<span class="number">9001</span> <span class="number">192.168</span><span class="number">.1</span><span class="number">.100</span>:<span class="number">9002</span></span><br><span class="line">&gt;&gt;&gt; Creating <span class="keyword">cluster</span></span><br><span class="line">*** ERROR: Invalid configuration <span class="keyword">for</span> <span class="keyword">cluster</span> creation.</span><br><span class="line">*** Redis <span class="keyword">Cluster</span> requires at <span class="built_in">least</span> <span class="number">3</span> master nodes.</span><br><span class="line">*** This <span class="keyword">is</span> <span class="keyword">not</span> possible <span class="keyword">with</span> <span class="number">3</span> nodes <span class="keyword">and</span> <span class="number">1</span> replicas per node.</span><br><span class="line">*** At <span class="built_in">least</span> <span class="number">6</span> nodes are required.</span><br></pre></td></tr></table></figure>
+<div class="note info"><p>注：集群至少需要3主3从6台服务器或进程。</p></div>
+<h2 id="复制虚拟机"><a href="#复制虚拟机" class="headerlink" title="复制虚拟机"></a>复制虚拟机</h2><div class="note info"><p>注： 复制虚拟机，记得修改虚拟机的MAC地址。</p></div>
+<h2 id="启动每台虚拟机的redis节点"><a href="#启动每台虚拟机的redis节点" class="headerlink" title="启动每台虚拟机的redis节点"></a>启动每台虚拟机的redis节点</h2><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost <span class="keyword">conf</span>-<span class="keyword">cluster</span>]# redis-server &#123;9000..9002&#125;.<span class="keyword">conf</span></span><br></pre></td></tr></table></figure>
+<h2 id="再次创建集群"><a href="#再次创建集群" class="headerlink" title="再次创建集群"></a>再次创建集群</h2><figure class="highlight x86asm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost conf-cluster]# /usr/local/redis-<span class="number">4.0</span><span class="meta">.10</span>/src/redis-trib.rb create --replicas <span class="number">1</span> <span class="number">192.168</span><span class="meta">.1</span><span class="meta">.100</span>:<span class="number">9000</span> <span class="number">192.168</span><span class="meta">.1</span><span class="meta">.100</span>:<span class="number">9001</span> <span class="number">192.168</span><span class="meta">.1</span><span class="meta">.100</span>:<span class="number">9002</span> <span class="number">192.168</span><span class="meta">.1</span><span class="meta">.101</span>:<span class="number">9000</span> <span class="number">192.168</span><span class="meta">.1</span><span class="meta">.101</span>:<span class="number">9001</span> <span class="number">192.168</span><span class="meta">.1</span><span class="meta">.101</span>:<span class="number">9002</span></span><br><span class="line">&gt;&gt;&gt; Creating cluster</span><br><span class="line">&gt;&gt;&gt; Performing hash slots allocation on <span class="number">6</span> nodes...</span><br><span class="line">Using <span class="number">3</span> masters:</span><br><span class="line"><span class="number">192.168</span><span class="meta">.1</span><span class="meta">.100</span>:<span class="number">9000</span></span><br><span class="line"><span class="number">192.168</span><span class="meta">.1</span><span class="meta">.101</span>:<span class="number">9000</span></span><br><span class="line"><span class="number">192.168</span><span class="meta">.1</span><span class="meta">.100</span>:<span class="number">9001</span></span><br><span class="line">Adding replica <span class="number">192.168</span><span class="meta">.1</span><span class="meta">.101</span>:<span class="number">9002</span> to <span class="number">192.168</span><span class="meta">.1</span><span class="meta">.100</span>:<span class="number">9000</span></span><br><span class="line">Adding replica <span class="number">192.168</span><span class="meta">.1</span><span class="meta">.100</span>:<span class="number">9002</span> to <span class="number">192.168</span><span class="meta">.1</span><span class="meta">.101</span>:<span class="number">9000</span></span><br><span class="line">Adding replica <span class="number">192.168</span><span class="meta">.1</span><span class="meta">.101</span>:<span class="number">9001</span> to <span class="number">192.168</span><span class="meta">.1</span><span class="meta">.100</span>:<span class="number">9001</span></span><br><span class="line"><span class="symbol">M:</span> 40d42fcd808b073c839d0b767eb296853a1995ed <span class="number">192.168</span><span class="meta">.1</span><span class="meta">.100</span>:<span class="number">9000</span></span><br><span class="line"><span class="symbol">   slots:</span><span class="number">0</span>-<span class="number">5460</span> (<span class="number">5461</span> slots) master</span><br><span class="line"><span class="symbol">M:</span> e1b5627a3f06d9dbf6ae75e26a3dfc3127018940 <span class="number">192.168</span><span class="meta">.1</span><span class="meta">.100</span>:<span class="number">9001</span></span><br><span class="line"><span class="symbol">   slots:</span><span class="number">10923</span>-<span class="number">16383</span> (<span class="number">5461</span> slots) master</span><br><span class="line"><span class="symbol">S:</span> 8a84e184bad311182898e7ee3f21280ed094a527 <span class="number">192.168</span><span class="meta">.1</span><span class="meta">.100</span>:<span class="number">9002</span></span><br><span class="line">   replicates 7d002ccb55e1fac7ec6ae57b3ee710806bbe1b0d</span><br><span class="line"><span class="symbol">M:</span> 7d002ccb55e1fac7ec6ae57b3ee710806bbe1b0d <span class="number">192.168</span><span class="meta">.1</span><span class="meta">.101</span>:<span class="number">9000</span></span><br><span class="line"><span class="symbol">   slots:</span><span class="number">5461</span>-<span class="number">10922</span> (<span class="number">5462</span> slots) master</span><br><span class="line"><span class="symbol">S:</span> f77cc08cac4bc93c642820afb6ec9b42710e2f0a <span class="number">192.168</span><span class="meta">.1</span><span class="meta">.101</span>:<span class="number">9001</span></span><br><span class="line">   replicates e1b5627a3f06d9dbf6ae75e26a3dfc3127018940</span><br><span class="line"><span class="symbol">S:</span> 407848979110a89f8804cf61a61c4386779a1a85 <span class="number">192.168</span><span class="meta">.1</span><span class="meta">.101</span>:<span class="number">9002</span></span><br><span class="line">   replicates 40d42fcd808b073c839d0b767eb296853a1995ed</span><br><span class="line">Can I set the above configuration? (type <span class="string">'yes'</span> to accept): yes</span><br><span class="line">&gt;&gt;&gt; Nodes configuration updated</span><br><span class="line">&gt;&gt;&gt; Assign a different config epoch to <span class="number">each</span> node</span><br><span class="line">&gt;&gt;&gt; Sending CLUSTER MEET messages to join the cluster</span><br><span class="line">Waiting for the cluster to join...</span><br><span class="line">&gt;&gt;&gt; Performing Cluster Check (using node <span class="number">192.168</span><span class="meta">.1</span><span class="meta">.100</span>:<span class="number">9000</span>)</span><br><span class="line"><span class="symbol">M:</span> 40d42fcd808b073c839d0b767eb296853a1995ed <span class="number">192.168</span><span class="meta">.1</span><span class="meta">.100</span>:<span class="number">9000</span></span><br><span class="line"><span class="symbol">   slots:</span><span class="number">0</span>-<span class="number">5460</span> (<span class="number">5461</span> slots) master</span><br><span class="line">   <span class="number">1</span> additional replica(s)</span><br><span class="line"><span class="symbol">S:</span> 8a84e184bad311182898e7ee3f21280ed094a527 <span class="number">192.168</span><span class="meta">.1</span><span class="meta">.100</span>:<span class="number">9002</span></span><br><span class="line"><span class="symbol">   slots:</span> (<span class="number">0</span> slots) slave</span><br><span class="line">   replicates 7d002ccb55e1fac7ec6ae57b3ee710806bbe1b0d</span><br><span class="line"><span class="symbol">S:</span> 407848979110a89f8804cf61a61c4386779a1a85 <span class="number">192.168</span><span class="meta">.1</span><span class="meta">.101</span>:<span class="number">9002</span></span><br><span class="line"><span class="symbol">   slots:</span> (<span class="number">0</span> slots) slave</span><br><span class="line">   replicates 40d42fcd808b073c839d0b767eb296853a1995ed</span><br><span class="line"><span class="symbol">S:</span> f77cc08cac4bc93c642820afb6ec9b42710e2f0a <span class="number">192.168</span><span class="meta">.1</span><span class="meta">.101</span>:<span class="number">9001</span></span><br><span class="line"><span class="symbol">   slots:</span> (<span class="number">0</span> slots) slave</span><br><span class="line">   replicates e1b5627a3f06d9dbf6ae75e26a3dfc3127018940</span><br><span class="line"><span class="symbol">M:</span> e1b5627a3f06d9dbf6ae75e26a3dfc3127018940 <span class="number">192.168</span><span class="meta">.1</span><span class="meta">.100</span>:<span class="number">9001</span></span><br><span class="line"><span class="symbol">   slots:</span><span class="number">10923</span>-<span class="number">16383</span> (<span class="number">5461</span> slots) master</span><br><span class="line">   <span class="number">1</span> additional replica(s)</span><br><span class="line"><span class="symbol">M:</span> 7d002ccb55e1fac7ec6ae57b3ee710806bbe1b0d <span class="number">192.168</span><span class="meta">.1</span><span class="meta">.101</span>:<span class="number">9000</span></span><br><span class="line"><span class="symbol">   slots:</span><span class="number">5461</span>-<span class="number">10922</span> (<span class="number">5462</span> slots) master</span><br><span class="line">   <span class="number">1</span> additional replica(s)</span><br><span class="line">[OK] All nodes agree about slots configuration.</span><br><span class="line">&gt;&gt;&gt; Check for open slots...</span><br><span class="line">&gt;&gt;&gt; Check slots coverage...</span><br><span class="line">[OK] All <span class="number">16384</span> slots covered.</span><br></pre></td></tr></table></figure>
+<div class="note info"><p>注：<br>如果一直卡在Waiting for the cluster to join…<br>请确保每台机器防火墙开启redis客户端端口及集群总线端口。<br>例：<br>如redis端口为9000，则集群总线端口为19000;<br>集群总线端口为redis客户端连接的端口 + 10000。</p></div>
+<h2 id="防火墙操作"><a href="#防火墙操作" class="headerlink" title="防火墙操作"></a>防火墙操作</h2><figure class="highlight bash"><figcaption><span>打开端口--permanent参数代表永久开放</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]<span class="comment"># firewall-cmd --zone=public --add-port=9000/tcp --permanent</span></span><br><span class="line">[root@localhost ~]<span class="comment"># firewall-cmd --zone=public --add-port=19000/tcp --permanent</span></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><figcaption><span>重启防火墙</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]<span class="comment"># firewall-cmd --reload</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><figcaption><span>查看开放的端口</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost conf-cluster]<span class="comment"># firewall-cmd --list-ports</span></span><br><span class="line">9000/tcp 9001/tcp 9002/tcp 19000/tcp 19001/tcp 19002/tcp</span><br></pre></td></tr></table></figure>
+<h1 id="连接redis集群"><a href="#连接redis集群" class="headerlink" title="连接redis集群"></a>连接redis集群</h1><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-attr">[root@localhost conf-cluster]</span># <span class="selector-tag">redis-cli</span> <span class="selector-tag">-h</span> 192<span class="selector-class">.168</span><span class="selector-class">.1</span><span class="selector-class">.100</span> <span class="selector-tag">-c</span> <span class="selector-tag">-p</span> 9000</span><br><span class="line">192<span class="selector-class">.168</span><span class="selector-class">.1</span><span class="selector-class">.100</span><span class="selector-pseudo">:9000</span>&gt;</span><br></pre></td></tr></table></figure>
+<div class="note "><p>必须要加：-c 参数</p></div>
+<h2 id="添加数据测试"><a href="#添加数据测试" class="headerlink" title="添加数据测试"></a>添加数据测试</h2><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-attr">[root@localhost conf-cluster]</span># <span class="selector-tag">redis-cli</span> <span class="selector-tag">-h</span> 192<span class="selector-class">.168</span><span class="selector-class">.1</span><span class="selector-class">.100</span> <span class="selector-tag">-c</span> <span class="selector-tag">-p</span> 9000</span><br><span class="line">192<span class="selector-class">.168</span><span class="selector-class">.1</span><span class="selector-class">.100</span><span class="selector-pseudo">:9000</span>&gt; <span class="selector-tag">set</span> <span class="selector-tag">title</span> <span class="selector-tag">testcluster</span></span><br><span class="line"><span class="selector-tag">OK</span></span><br></pre></td></tr></table></figure>
+<p><strong>在192.168.1.101 9002节点连接，获取数据。直接Redirected 从192.168.1.100:9000 获取数据。</strong><br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-attr">[root@localhost conf-cluster]</span># <span class="selector-tag">redis-cli</span> <span class="selector-tag">-h</span> 192<span class="selector-class">.168</span><span class="selector-class">.1</span><span class="selector-class">.101</span> <span class="selector-tag">-c</span> <span class="selector-tag">-p</span> 9002</span><br><span class="line">192<span class="selector-class">.168</span><span class="selector-class">.1</span><span class="selector-class">.101</span><span class="selector-pseudo">:9002</span>&gt; <span class="selector-tag">get</span> <span class="selector-tag">title</span></span><br><span class="line"><span class="selector-tag">-</span>&gt; <span class="selector-tag">Redirected</span> <span class="selector-tag">to</span> <span class="selector-tag">slot</span> <span class="selector-attr">[2217]</span> <span class="selector-tag">located</span> <span class="selector-tag">at</span> 192<span class="selector-class">.168</span><span class="selector-class">.1</span><span class="selector-class">.100</span><span class="selector-pseudo">:9000</span></span><br><span class="line">"<span class="selector-tag">testcluster</span>"</span><br></pre></td></tr></table></figure></p>
+<p><strong>至此，redis集群环境配置成功!</strong></p>
+<div class="note "><p>如果重启服务器后，再次执行redis-trib.rb会报错如下错误：<br>[ERR] Node 192.168.1.80:6379 is not empty. Either the node already knows other nodes (check with CLUSTER NODES) or contains some key in database 0.<br>解决方法：<br>删除配置的<code>cluster-config-file</code> <code>pidfile</code> 和生成的<code>dump.rdb</code> ，然后重启redis服务，最后启动集群。</p></div>
+<h2 id="关闭redis节点端口"><a href="#关闭redis节点端口" class="headerlink" title="关闭redis节点端口"></a>关闭redis节点端口</h2><figure class="highlight bash"><figcaption><span>关闭redis节点端口</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost conf-cluster]<span class="comment"># redis-cli -h 192.168.1.100 -c -p 9000 shutdown</span></span><br></pre></td></tr></table></figure>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="http://shift-alt-ctrl.iteye.com/blog/2284890" target="_blank" rel="noopener">http://shift-alt-ctrl.iteye.com/blog/2284890</a><br><a href="https://www.cnblogs.com/subendong/p/7417601.html" target="_blank" rel="noopener">https://www.cnblogs.com/subendong/p/7417601.html</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Linux/" rel="tag"># Linux</a>
+          
+            <a href="/tags/CentOS-7/" rel="tag"># CentOS 7</a>
+          
+            <a href="/tags/Redis/" rel="tag"># Redis</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/07/11/CentOS-7初识/" rel="next" title="CentOS-7初识">
+                <i class="fa fa-chevron-left"></i> CentOS-7初识
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="http://p9vt42nrg.bkt.clouddn.com/image/avatar/noface.jpeg"
+                alt="chiangfai" />
+            
+              <p class="site-author-name" itemprop="name">chiangfai</p>
+              <p class="site-description motion-element" itemprop="description">存一寸光阴，换一个世纪。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/chiangfai" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:chiangfai@yeah.net" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-globe"></i>
+                
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://iissnan.com/progit/" title="Pro Git" target="_blank">Pro Git</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.crx4chrome.com" title="crx4chrome" target="_blank">crx4chrome</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          <div id="site-currentTime"></div>
+
+<script type="text/javascript">
+	function setSiteCurrentTime() {
+		window.setTimeout("setSiteCurrentTime()", 1000);
+		var second = 1000; // 秒
+		var minute = second * 60; // 分
+		var hour = minute * 60; // 时
+		var day = hour * 24; // 天
+		var year = day * 365; // 年
+
+		var currentDate = new Date(); // 获取当前时间
+		var currentYear = currentDate.getFullYear();
+		var currentMonth = currentDate.getMonth() + 1;
+
+		var currentDay = currentDate.getDate();
+		var currentHour = currentDate.getHours();
+		var currentMinute = currentDate.getMinutes();
+		var currentSecond = currentDate.getSeconds();
+		//
+		//2018-05-31
+		var birth = Date.UTC(2018, 05, 31, 12, 00, 00); // 北京时间2016-12-1 00:00:00
+		var now = Date.UTC(currentYear, currentMonth, currentDay, currentHour, currentMinute, currentSecond);
+
+		var diff = now - birth;
+		var diffYear = Math.floor(diff/year);
+		var diffDay = Math.floor((diff/day) - diffYear*365);
+		var diffHour = Math.floor((diff - (diffYear*365+diffDay)*day)/hour);
+		var diffMinute = Math.floor((diff-(diffYear*365+diffDay)*day - diffHour*hour)/minute);
+		var diffSecond = Math.floor((diff - (diffYear*365+diffDay)*day - diffHour*hour - diffMinute*minute)/second);
+
+		document.getElementById('site-currentTime').innerHTML = formartHTML(diffYear, diffDay , diffHour, diffMinute, diffSecond);
+	}
+
+	function formartHTML(year, day, hour, minute, second) {
+		var time = '已运行',  y = year + ' 年 ', d = day + ' 天 ', h = hour + ' 时 ', m = minute + ' 分 ', s = second+ ' 秒 ';
+
+		if( year > 0 ) {
+			time += y;
+		}
+
+		time += d + h + m + s;
+		var html = '<i class="fa fa-hourglass-half"/>'
+			html += '<span>' + time + '</span>';
+
+		return html;
+		// return html + '已运行 ' + year + ' 年 ' + day + ' 天 '+ hour + ' 时 ' + minute + ' 分 ' + second+ ' 秒 ';
+	}
+	setSiteCurrentTime();
+</script>
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#部署环境"><span class="nav-number">1.</span> <span class="nav-text">部署环境</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#redis-安装"><span class="nav-number">2.</span> <span class="nav-text">redis 安装</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#下载解压拷贝redis"><span class="nav-number">2.1.</span> <span class="nav-text">下载解压拷贝redis</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#编译redis"><span class="nav-number">2.2.</span> <span class="nav-text">编译redis</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装-gcc"><span class="nav-number">2.3.</span> <span class="nav-text">安装 gcc</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#创建-redis-节点"><span class="nav-number">3.</span> <span class="nav-text">创建 redis 节点</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#修改-9000-9002-conf文件。"><span class="nav-number">3.1.</span> <span class="nav-text">修改{9000..9002}.conf文件。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#启动｛9000-9002｝节点"><span class="nav-number">3.2.</span> <span class="nav-text">启动｛9000..9002｝节点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#检查各-Redis-节点启动情况"><span class="nav-number">3.3.</span> <span class="nav-text">检查各 Redis 节点启动情况</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装ruby"><span class="nav-number">4.</span> <span class="nav-text">安装ruby</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#升级ruby"><span class="nav-number">4.1.</span> <span class="nav-text">升级ruby</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装rvm-ruby版本控制"><span class="nav-number">4.1.1.</span> <span class="nav-text">安装rvm(ruby版本控制)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#切换ruby版本"><span class="nav-number">4.1.2.</span> <span class="nav-text">切换ruby版本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#gem再次安装redis"><span class="nav-number">4.1.3.</span> <span class="nav-text">gem再次安装redis</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#创建redis集群"><span class="nav-number">5.</span> <span class="nav-text">创建redis集群</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#复制虚拟机"><span class="nav-number">5.1.</span> <span class="nav-text">复制虚拟机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#启动每台虚拟机的redis节点"><span class="nav-number">5.2.</span> <span class="nav-text">启动每台虚拟机的redis节点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#再次创建集群"><span class="nav-number">5.3.</span> <span class="nav-text">再次创建集群</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#防火墙操作"><span class="nav-number">5.4.</span> <span class="nav-text">防火墙操作</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#连接redis集群"><span class="nav-number">6.</span> <span class="nav-text">连接redis集群</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#添加数据测试"><span class="nav-number">6.1.</span> <span class="nav-text">添加数据测试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关闭redis节点端口"><span class="nav-number">6.2.</span> <span class="nav-text">关闭redis节点端口</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-number">7.</span> <span class="nav-text">参考</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">chiangfai</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
