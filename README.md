@@ -5,14 +5,16 @@
 ### Yoo, I’m a 👻
 Don’t leave your children unattended, all unattended children will be eaten by me. 😋
 
-### About
+**About**
 <img align="right" width="50%" alt="langs" src="https://github-readme-stats.vercel.app/api/top-langs/?username=soyrros&layout=compact&theme=buefy&hide_border=true" />
 
 - 🐟 amateur developer
 - 🧱 🇨🇻 & crud porter
 - 🥰 In fact, I’m usually harmless
 
-### More
+---
+
+**More**
 - [Personality](https://www.16personalities.com/profiles/0c0f27b38dd1a)
 
 | Personality Type | [Mind](https://www.16personalities.com/articles/mind-introverted-vs-extraverted) | [Energy](https://www.16personalities.com/articles/energy-intuitive-vs-observant) | [Nature](https://www.16personalities.com/articles/nature-thinking-vs-feeling) | [Tactics](https://www.16personalities.com/articles/tactics-judging-vs-prospecting) | [Identity](https://www.16personalities.com/articles/identity-assertive-vs-turbulent) |
