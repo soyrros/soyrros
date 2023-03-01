@@ -6,13 +6,13 @@
 Don’t leave your children unattended, all unattended children will be eaten by me. 😋
 
 **About**
+<!--
 <img align="right" width="50%" alt="langs" src="https://github-readme-stats.vercel.app/api/top-langs/?username=soyrros&layout=compact&theme=buefy&hide_border=true" />
+-->
 
 - 🐟 amateur developer
 - 🧱 🇨🇻 & crud porter
 - 🥰 In fact, I’m usually harmless
-
----
 
 **More**
 - [Personality](https://www.16personalities.com/profiles/0c0f27b38dd1a)
@@ -20,6 +20,17 @@ Don’t leave your children unattended, all unattended children will be eaten by
 | Personality Type | [Mind](https://www.16personalities.com/articles/mind-introverted-vs-extraverted) | [Energy](https://www.16personalities.com/articles/energy-intuitive-vs-observant) | [Nature](https://www.16personalities.com/articles/nature-thinking-vs-feeling) | [Tactics](https://www.16personalities.com/articles/tactics-judging-vs-prospecting) | [Identity](https://www.16personalities.com/articles/identity-assertive-vs-turbulent) |
 |:---:|--|---|---|---|---|
 | [Turbulent Adventurer](https://www.16personalities.com/isfp-personality) <br> (ISFP-T) | 87% <br> Introverted | 81% <br> Observant | 81% <br> Feeling | 63% <br> Prospecting  | 89% <br> Turbulent |
+
+<br/>
+<br/>
+
+<a href="https://qm.qq.com/cgi-bin/qm/qr?k=1MyPiaw5b3zeo9uIbY9HFqjP6Kn7_8tV">
+  <img align="right" alt="0x0 | QQ" width="21px" src="https://cdn.jsdelivr.net/gh/soyrros/soyrros@latest/assets/qq.svg" />
+</a>
+
+<a href="mailto:soyrros@gmail.com">
+  <img align="right" alt="0x0 | Gmail" width="21px" src="https://cdn.jsdelivr.net/gh/soyrros/soyrros@latest/assets/mail.svg" />
+</a>
 
 
 <!--
