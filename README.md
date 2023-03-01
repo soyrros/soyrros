@@ -1,18 +1,18 @@
-<div align="center" ><a href="https://soyrros.github.io"><img alt="Hi, I’m 0x0." style="border-radius: 100%; width: 5.5rem" src="https://s2.loli.net/2023/02/12/zR7PFGu14w9X8gn.jpg"/></a></div>
+<!--
+<div align="center" ><a href="https://soyrros.github.io"><img alt="Hi, I’m 0x0." width="14%" border-radius="100%" src="https://s2.loli.net/2023/02/12/zR7PFGu14w9X8gn.jpg"/></a></div>
+-->
 
-# Yoo, I’m a 👻
+### Yoo, I’m a 👻
 Don’t leave your children unattended, all unattended children will be eaten by me. 😋
 
-
+### About
 <img align="right" width="50%" alt="langs" src="https://github-readme-stats.vercel.app/api/top-langs/?username=soyrros&layout=compact&theme=buefy&hide_border=true" />
 
-**About**
-
-- 🐟 Amateur Javaer
-- 🧱 cv & crud porter
+- 🐟 amateur developer
+- 🧱 🇨🇻 & crud porter
 - 🥰 In fact, I’m usually harmless
 
-**More**
+### More
 - [Personality](https://www.16personalities.com/profiles/0c0f27b38dd1a)
 
 | Personality Type | [Mind](https://www.16personalities.com/articles/mind-introverted-vs-extraverted) | [Energy](https://www.16personalities.com/articles/energy-intuitive-vs-observant) | [Nature](https://www.16personalities.com/articles/nature-thinking-vs-feeling) | [Tactics](https://www.16personalities.com/articles/tactics-judging-vs-prospecting) | [Identity](https://www.16personalities.com/articles/identity-assertive-vs-turbulent) |
