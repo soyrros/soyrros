@@ -11,7 +11,7 @@ Don’t leave your children unattended, all unattended children will be eaten by
 -->
 
 - 🐟 amateur developer
-- 🧱 🇨🇻 & crud porter
+- 🧱 cv & crud porter
 - 🥰 In fact, I’m usually harmless
 
 **More**
@@ -24,7 +24,7 @@ Don’t leave your children unattended, all unattended children will be eaten by
 <br/>
 <br/>
 
-<a href="https://qm.qq.com/cgi-bin/qm/qr?k=1MyPiaw5b3zeo9uIbY9HFqjP6Kn7_8tV">
+<a href="http://wpa.qq.com/msgrd?v=3&uin=121062209&site=qq&menu=yes">
   <img align="right" alt="0x0 | QQ" width="21px" src="https://cdn.jsdelivr.net/gh/soyrros/soyrros@latest/assets/qq.svg" />
 </a>
 
