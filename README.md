@@ -25,11 +25,11 @@ Don’t leave your children unattended, all unattended children will be eaten by
 <br/>
 
 <a href="http://wpa.qq.com/msgrd?v=3&uin=121062209&site=qq&menu=yes">
-  <img align="right" alt="0x0 | QQ" width="21px" src="https://cdn.jsdelivr.net/gh/soyrros/soyrros@latest/assets/qq.svg" />
+  <img align="right" alt="VIIN | QQ" width="21px" src="https://cdn.jsdelivr.net/gh/soyrros/soyrros@latest/assets/qq.svg" />
 </a>
 
-<a href="mailto:soyrros@gmail.com">
-  <img align="right" alt="0x0 | Gmail" width="21px" src="https://cdn.jsdelivr.net/gh/soyrros/soyrros@latest/assets/mail.svg" />
+<a href="mailto:viinulla@gmail.com">
+  <img align="right" alt="VIIN | Gmail" width="21px" src="https://cdn.jsdelivr.net/gh/viinulla/viinulla@latest/assets/mail.svg" />
 </a>
 
 
